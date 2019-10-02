@@ -1,15 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from 'react'
 
-const useLocalStorage = (key, initialValue) => {
-  const [storedValue, setStoredValue] = useState(() => {
-    const item = window.localStorage.getItem(key);
-    return item ? JSON.parse(item) : initialValue;
-  });
-  const setValue = value => {
-    setStoredValue(value);
-    window.localStorage.setItem(key, JSON.stringify(value));
-  };
-  return [storedValue, setValue];
-};
+//this is the useLocalStorage hook for step 1
+export const useLocalStorage = (key, initialValue) => {
+    const [storedValue, setStoredValue] = useState(() =>{
+        const item = window.localStorage.getItem(key);
+        
+        return item ? JSON.parse(item) : initialValue   
+           
+    });
+    
+    const setValue = (value) => {
+        setStoredValue(value);
+        window.localStorage.setItem(key, JSON.stringify(value));
+    }
 
-export default useLocalStorage
+    return [storedValue, setValue];
+    
+}
